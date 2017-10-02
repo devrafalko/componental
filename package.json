@@ -1,18 +1,10 @@
 {
   "name": "componental",
   "version": "0.1.0",
-  "description": "The initial webpack configuration template for component-like SPA and MPA projects.",
+  "author": "Paweł Rafałko",
+  "license": "MIT",
   "main": "index.js",
-  "scripts": {
-    "install-from-git":"npm install -g https://github.com/devrafalko/componental.git"
-  },
-  "bin": {
-    "compo": "./bin/cli.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/devrafalko/componental.git"
-  },
+  "description": "The initial webpack configuration template for component-like SPA and MPA projects.",
   "keywords": [
     "component",
     "spa",
@@ -23,8 +15,27 @@
     "mvc",
     "componental"
   ],
-  "author": "Paweł Rafałko",
-  "license": "MIT",
+  "scripts": {
+  "dependencies": {
+    "file-assistant": "^1.0.1",
+    "get-arguments": "^1.0.2",
+    "inquirer": "^3.3.0",
+    "move-on": "^1.0.0",
+    "of-type": "^2.1.0",
+    "semver": "^5.4.1",
+    "spdx-correct": "^2.0.4"
+  },
+    "install-from-git": "npm install -g https://github.com/devrafalko/componental.git",
+    "install-from-root": "npm install -g .",
+    "open-dir":"start ."
+  },
+  "bin": {
+    "compo": "./bin/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devrafalko/componental.git"
+  },
   "bugs": {
     "url": "https://github.com/devrafalko/componental/issues"
   },
