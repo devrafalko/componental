@@ -41,10 +41,10 @@ function Init(){
       this.defineAdditionalDependencies,
       this.preventModulesPath,
       this.getFormData,
+      this.setDependenciesInstall,
       this.ensureDir,
       this.preventOverwritePath,
       this.mergeTemplateFiles,
-      this.setDependenciesInstall,
       this.updatePackageJson
     ];
 
@@ -290,6 +290,16 @@ Init.prototype.getFormData = function(resolve){
 
 };
 
+Init.prototype.setDependenciesInstall = function(resolve,reject){
+  for(var group of ['local','global']){
+    for(var dep of this.data.dependencies[group]){
+      dep.install = this.formData.dependencies[dep.name];
+    }
+  }
+  resolve();
+};
+
+
 Init.prototype.ensureDir = function(resolve,reject){
 /* Create project root directory, if not exists
  * Check if the root directory is accessible
@@ -392,15 +402,6 @@ Init.prototype.mergeTemplateFiles = function(resolve,reject){
     if(o.success) console.log(cliPath(`The '${o.relative}' ${o.item==='file'?'file':'folder'} added.`));
     if(o.failure) console.log(cliError(o.failure));
   }
-};
-
-Init.prototype.setDependenciesInstall = function(resolve,reject){
-  for(var group of ['local','global']){
-    for(var dep of this.data.dependencies[group]){
-      dep.install = this.formData.dependencies[dep.name];
-    }
-  }
-  resolve();
 };
 
 

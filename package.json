@@ -15,7 +15,6 @@
     "mvc",
     "componental"
   ],
-  "scripts": {
   "dependencies": {
     "file-assistant": "^1.0.1",
     "get-arguments": "^1.0.2",
@@ -25,6 +24,7 @@
     "semver": "^5.4.1",
     "spdx-correct": "^2.0.4"
   },
+  "scripts": {
     "install-from-git": "npm install -g https://github.com/devrafalko/componental.git",
     "install-from-root": "npm install -g .",
     "open-dir":"start ."
