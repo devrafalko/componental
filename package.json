@@ -16,7 +16,7 @@
     "componental"
   ],
   "dependencies": {
-    "file-assistant": "^1.0.1",
+    "file-assistant": "^1.1.1",
     "get-arguments": "^1.0.2",
     "inquirer": "^3.3.0",
     "move-on": "^1.0.0",
@@ -27,7 +27,7 @@
   "scripts": {
     "install-from-git": "npm install -g https://github.com/devrafalko/componental.git",
     "install-from-root": "npm install -g .",
-    "open-dir":"start ."
+    "open-dir": "start ."
   },
   "bin": {
     "compo": "./bin/cli.js"

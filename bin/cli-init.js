@@ -27,6 +27,7 @@ module.exports = new Init().run;
 function Init(){
   this.run = (cliArguments)=>{
     const userContext = {
+      handlers:this.handlers,
       utils:this.utils,
       data:{
         rootPath:root,
@@ -44,8 +45,7 @@ function Init(){
       this.setDependenciesInstall,
       this.ensureDir,
       this.preventOverwritePath,
-      this.mergeTemplateFiles,
-      this.updatePackageJson
+      this.mergeTemplateFiles
     ];
 
     moveOn(functionQueue,userContext,onDone,onCatch);
@@ -379,7 +379,7 @@ Init.prototype.mergeTemplateFiles = function(resolve,reject){
       {dir:'templates'},
       {dir:'tests'}
     ]},
-    {file:'package.json', copy:path.resolve(t,'package.json'), overwrite:true},
+    {file:'package.json', copy:path.resolve(t,'package.json'), beforeWrite:this.handlers.updatePackageJson.bind(this), overwrite:true},
     {file:'.gitignore', copy:path.resolve(t,'git-ignore'), overwrite:true},
     {file:'.npmignore', copy:path.resolve(t,'npm-ignore'), overwrite:true},
     {file:'.npmrc', copy:path.resolve(t,'npm-rc'), overwrite:true},
@@ -405,33 +405,33 @@ Init.prototype.mergeTemplateFiles = function(resolve,reject){
 };
 
 
-Init.prototype.updatePackageJson = function(resolve,reject){
-/* it takes the formData data passed by the user and update the package.json with those data
- */
-  const packagePath = path.resolve(this.data.projectPath,'package.json');
-  this.utils.readJSON(packagePath,(err,json)=>{
-    if(err) return reject(cliError(`Could not read the package.json file in the '${packagePath}' path. The initiation process was aborted.`));
 
+
+Init.prototype.handlers = {
+  updatePackageJson:function(data,resolve,reject){
+  /* it takes the formData data passed by the user and update the package.json with those data
+   */
+  var packageData;
+    try{
+      packageData = JSON.parse(data);
+    } catch(err){
+      return reject(`Reinstall ${npmName} package and try again.`);
+    }
+    
     updatePackageData.call(this);
     updateDependencies.call(this);
     updateScriptPostInstall.call(this);
-    
-    const packageStructure = [{file:'package.json',write:this.utils.toJSON(json),overwrite:true}];
+    resolve(this.utils.toJSON(packageData));
 
-    fileAssistant(this.data.projectPath,packageStructure,(o)=>{
-      if(o.error) return reject(cliError(`Could not update the package.json file in the '${packagePath}' path. The initiation process was aborted.`));
-      resolve();
-    });
-    
       function updatePackageData(){
         for(var prop of Object.getOwnPropertyNames(this.formData.package)){
-          json[prop] = this.formData.package[prop];
+          packageData[prop] = this.formData.package[prop];
         }
       }
 
       function updateDependencies(){
         for(var dep of this.data.dependencies.local){
-          if(dep.install) json.devDependencies[dep.package] = dep.version;
+          if(dep.install) packageData.devDependencies[dep.package] = dep.version;
         }
       }
 
@@ -439,21 +439,18 @@ Init.prototype.updatePackageJson = function(resolve,reject){
         var iter = 0;
         //if postinstall already exists it just add new packages to it
         //if does not exists, it will be created
-        var postinstall = json.scripts.postinstall ? '':'npm link'; 
+        var postinstall = packageData.scripts.postinstall ? '':'npm link'; 
         for(var dep of this.data.dependencies.global){
           if(dep.install){
             postinstall += ` ${dep.package}@${dep.version}`;
             iter++;
           }
         }
-        if(iter) json.scripts.postinstall = postinstall;
+        if(iter) packageData.scripts.postinstall = postinstall;
       }
-    
-  });
+
+  }
 };
-
-
-
 
 
 Init.prototype.utils = {
