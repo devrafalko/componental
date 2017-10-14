@@ -16,9 +16,10 @@
     "componental"
   ],
   "dependencies": {
-    "file-assistant": "^1.1.1",
+    "file-assistant": "^1.3.0",
     "get-arguments": "^1.0.2",
     "inquirer": "^3.3.0",
+    "list-contents": "^3.2.0",
     "move-on": "^1.0.0",
     "of-type": "^2.1.0",
     "semver": "^5.4.1",
@@ -27,7 +28,8 @@
   "scripts": {
     "install-from-git": "npm install -g https://github.com/devrafalko/componental.git",
     "install-from-root": "npm install -g .",
-    "open-dir": "start ."
+    "open-dir": "start .",
+    "postinstall": "node ./helpers/rename-template-files.js"
   },
   "bin": {
     "compo": "./bin/cli.js"

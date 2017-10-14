@@ -1,0 +1,34 @@
+{
+  "jquery":{
+    "package":"jquery",
+    "version":"^3.2.1",
+    "valueForm":"jquery",
+    "valueCli":"jquery",
+    "global":false,
+    "default":false
+  },
+  "jqueryUI":{
+    "package":"webpack-jquery-ui",
+    "version":"^1.0.0",
+    "valueForm":"jquery UI",
+    "valueCli":"jqueryui",
+    "global":false,
+    "default":false
+  },
+  "bootstrap":{
+    "package":"webpack-bootstrap-installer",
+    "version":"^1.0.0",
+    "valueForm":"Bootstrap 3",
+    "valueCli":"bootstrap3",
+    "global":false,
+    "default":false
+  },
+  "icons":{
+    "package":"webpack-icons-installer",
+    "version":"^1.0.0",
+    "valueForm":"Bootstrap Glyphicons, Google material-design-icons and font-awesome icons",
+    "valueCli":"icons",
+    "global":true,
+    "default":false
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "chrome":{
+    "package":"karma-chrome-launcher",
+    "version":"^2.2.0",
+    "valueKarma":"Chrome",
+    "valueForm":"Chrome",
+    "valueCli":"chrome",
+    "default":true
+  },
+  "chromeCanary":{
+    "package":"karma-chrome-launcher",
+    "version":"^2.2.0",
+    "valueKarma":"ChromeCanary",
+    "valueForm":"Chrome Canary",
+    "valueCli":"chromecanary",
+    "default":false
+  },
+  "firefox":{
+    "package":"karma-firefox-launcher",
+    "version":"^1.0.1",
+    "valueKarma":"Firefox",
+    "valueForm":"Firefox",
+    "valueCli":"firefox",
+    "default":false
+  },
+  "edge":{
+    "package":"karma-edge-launcher",
+    "version":"^0.4.2",
+    "valueKarma":"Edge",
+    "valueForm":"Microsoft Edge",
+    "valueCli":"edge",
+    "default":false
+  },
+  "ie":{
+    "package":"karma-ie-launcher",
+    "version":"^1.0.0",
+    "valueKarma":"IE",
+    "valueForm":"Internet Explorer",
+    "valueCli":"ie",
+    "default":false
+  },
+  "opera":{
+    "package":"karma-opera-launcher",
+    "version":"^1.0.0",
+    "valueKarma":"Opera",
+    "valueForm":"Opera",
+    "valueCli":"opera",
+    "default":false
+  },
+  "phantomjs":{
+    "package":"karma-phantomjs-launcher",
+    "version":"^1.0.4",
+    "valueKarma":"PhantomJS",
+    "valueForm":"PhantomJS",
+    "valueCli":"phantomjs",
+    "default":false
+  },
+  "safari":{
+    "package":"karma-safari-launcher",
+    "version":"^1.0.0",
+    "valueKarma":"Safari",
+    "valueForm":"Safari",
+    "valueCli":"safari",
+    "default":false
+  }
+}
