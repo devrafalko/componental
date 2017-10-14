@@ -611,7 +611,7 @@ Init.prototype.handlers = {
       data.allForm.push(dep.valueForm);
     }
   },
-  
+
   computeArgumentsObject: function(){
     const cliData = {};
     const getValues = this.cliData.cliArguments;
@@ -630,16 +630,15 @@ Init.prototype.handlers = {
 
     const returned = compare(model,compared) ? null:this.handlers.createBashTable.call(this);
     callback(returned);
-    
+
     function compare(model,compared){
       for(var i of compared) if(!model.some((x)=>x===i)) return false;
       return true;
     }
-
   },
   createBashTable: function(){
     const c = this.cliData.initArguments;
-    c.addons.values = this.dependenciesData.dependenciesList.cli.join('|');
+    c.addons.values = this.dependenciesData.allCli.join('|');
     c.browsers.values = this.browsersData.browsersListCli.join('|');
 
     var computedMessage = `Use ${cliKey('compo init')} with the following arguments:`;
